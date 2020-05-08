@@ -31,6 +31,13 @@ class GridSuite extends JUnitSuite {
     }
   }
 
+  private val exchangeProperty = forAll(gridGen){
+    g => {
+      val initGrid = new Grid(g)
+      initGrid.transform(Exchange()).transform(Exchange()) == initGrid
+    }
+  }
+
   private val gridArr =
     "4-129--752--3--8-P-7--8---6---1-3-621-5---4-373-6-8---6---2--3---7--1--489--651--".toCharArray
 
@@ -54,9 +61,22 @@ class GridSuite extends JUnitSuite {
     addRemoveProperty.check()
   }
 
-  // TODO ADD OTHERS IN BETWEEN
+  // TODO ADD NORMAL START TEST
+
+  // TODO ADD NORMAL TRANSPOSE TEST
 
   @Test def transpose(): Unit = {
     transposeProperty.check()
   }
+
+  // TODO ADD NORMAL EXCHANGE TEST
+
+  @Test def exchange(): Unit = {
+    exchangeProperty.check()
+  }
+
+  // todo normal filter row col
+  // todo normal filter square
+  // todo chain add filter filter is always valid property
+  // todo sequence add filter filter is always valid property
 }
