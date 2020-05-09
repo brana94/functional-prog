@@ -42,20 +42,21 @@ class Grid(g: IndexedSeq[Char]) {
       }
       case FilterSquare(pos) => {
         val arrPos = GridHelper.arrayIndex(pos)
-        val arrStart = GridHelper.arrayIndex((pos._1 / 3, pos._2 / 3))
+        val arrStart = GridHelper.arrayIndex(((pos._1 / 3) * 3, (pos._2 / 3) * 3))
+        val v = grid(arrPos)
         var newGrid = grid
         for (i <- arrStart to arrStart + 2) {
-          if (i != arrPos && newGrid(i) == newGrid(arrPos)) {
+          if (i != arrPos && newGrid(i) == v) {
             newGrid = newGrid.updated(i, '-')
           }
         }
         for (i <- arrStart + 9 to arrStart + 11) {
-          if (i != arrPos && newGrid(i) == newGrid(arrPos)) {
+          if (i != arrPos && newGrid(i) == v) {
             newGrid = newGrid.updated(i, '-')
           }
         }
         for (i <- arrStart + 18 to arrStart + 20) {
-          if (i != arrPos && newGrid(i) == newGrid(arrPos)) {
+          if (i != arrPos && newGrid(i) == v) {
             newGrid = newGrid.updated(i, '-')
           }
         }
