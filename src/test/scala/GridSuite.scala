@@ -8,14 +8,6 @@ class GridSuite extends JUnitSuite {
   private val gridGen: Gen[Array[Char]] =
     Gen.containerOfN[Array, Char](81, Gen.oneOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', 'P'))
 
-  /*private val indexGen: Gen[(GridHelper.MatrixPos)] =
-    for {
-      x <- Gen.choose(0, 8)
-      y <- Gen.choose(0, 8)
-    } yield (x, y)
-
-  private val valGen: Gen[Char] = Gen.choose('1'.toChar, '9'.toChar)*/
-
   private val addRemoveProperty = forAll(gridGen) {
     g => {
       val initGrid = new Grid(g)
